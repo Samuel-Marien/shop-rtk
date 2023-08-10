@@ -4,13 +4,16 @@ const initialState = {
   phones: 5
 }
 
-createSlice({
+const phoneSlices = createSlice({
   name: 'phone',
   initialState,
   reducers: {
-    phones: (state, action) => {
+    phones: (state) => {
       // action {type: "phone/phones", payload:undefined}
-      state.phones -= action.payload
+      state.phones--
     }
   }
 })
+
+export default phoneSlices.reducer
+export const { phones } = phoneSlices.actions
