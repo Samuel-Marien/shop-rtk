@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { tvs as tvsAction } from '../tvs/tvSlice'
 
 const initialState = {
-  phones: 5
+  phones: 5,
+  tablets: 15
 }
 
 const phoneSlices = createSlice({
@@ -12,6 +13,10 @@ const phoneSlices = createSlice({
     phones: (state) => {
       // action {type: "phone/phones", payload:undefined}
       state.phones--
+    },
+    tablets: (state, action) => {
+      // action {type: "phone/tablets", payload:number}
+      state.tablets -= action.payload
     }
   },
 
@@ -31,4 +36,4 @@ const phoneSlices = createSlice({
 })
 
 export default phoneSlices.reducer
-export const { phones } = phoneSlices.actions
+export const { phones, tablets } = phoneSlices.actions
