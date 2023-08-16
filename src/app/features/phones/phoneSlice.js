@@ -10,9 +10,9 @@ const phoneSlices = createSlice({
   name: 'phone',
   initialState,
   reducers: {
-    phones: (state) => {
-      // action {type: "phone/phones", payload:undefined}
-      state.phones--
+    phones: (state, action) => {
+      // action {type: "phone/phones", payload:number}
+      state.phones -= action.payload
     },
     tablets: (state, action) => {
       // action {type: "phone/tablets", payload:number}
@@ -20,13 +20,15 @@ const phoneSlices = createSlice({
     }
   },
 
+  // Add external action
   // CLassic syntax (more efficient):
   extraReducers: (builder) => {
-    builder.addCase(tvsAction, (state) => {
-      state.phones--
+    builder.addCase(tvsAction, (state, action) => {
+      state.phones -= action.payload
     })
   }
 
+  // Add external action
   // Alternative syntax:
   // extraReducers: {
   //   ['tv/tvs']: (state) => {

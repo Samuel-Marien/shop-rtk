@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { tvs as tvsAction } from './tvSlice'
 
@@ -9,6 +9,7 @@ const TvView = () => {
   // console.log(test)
   const tvs = useSelector((state) => state.tv.tvs)
   const dispatch = useDispatch()
+  const [tvNum, setTvNum] = useState(0)
 
   return (
     <div className="container">
@@ -18,7 +19,12 @@ const TvView = () => {
         <span id="count">{tvs}</span>
       </p>
       <div className="btnContainer">
-        <button onClick={() => dispatch(tvsAction())}>Acheter</button>
+        <button onClick={() => dispatch(tvsAction(tvNum))}>Acheter</button>
+        <input
+          type="number"
+          value={tvNum}
+          onChange={(e) => setTvNum(e.target.value)}
+        />
       </div>
     </div>
   )

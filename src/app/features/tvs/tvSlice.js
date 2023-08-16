@@ -8,8 +8,8 @@ const tvSlices = createSlice({
   name: 'tv',
   initialState,
   reducers: {
-    tvs: (state) => {
-      state.tvs--
+    tvs: (state, action) => {
+      state.tvs -= action.payload
     }
   }
 })
