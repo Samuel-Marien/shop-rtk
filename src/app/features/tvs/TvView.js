@@ -23,6 +23,7 @@ const TvView = () => {
         <input
           type="number"
           min="1"
+          max={tvs}
           value={tvNum}
           onChange={(e) => setTvNum(e.target.value)}
         />

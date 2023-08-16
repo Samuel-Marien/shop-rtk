@@ -14,9 +14,16 @@ const phoneSlices = createSlice({
       // action {type: "phone/phones", payload:number}
       state.phones -= action.payload
     },
+    adminPhones: (state, action) => {
+      // action {type: "phone/adminPhones", payload:number}
+      state.phones += action.payload
+    },
     tablets: (state, action) => {
       // action {type: "phone/tablets", payload:number}
       state.tablets -= action.payload
+    },
+    adminTablets: (state, action) => {
+      state.tablets += action.payload
     }
   },
 
@@ -24,7 +31,11 @@ const phoneSlices = createSlice({
   // CLassic syntax (more efficient):
   extraReducers: (builder) => {
     builder.addCase(tvsAction, (state, action) => {
-      state.phones -= action.payload
+      if (action.payload <= state.phones) {
+        state.phones -= action.payload
+      } else if (action.payload > state.phones) {
+        state.phones = 0
+      }
     })
   }
 
@@ -38,4 +49,5 @@ const phoneSlices = createSlice({
 })
 
 export default phoneSlices.reducer
-export const { phones, tablets } = phoneSlices.actions
+export const { phones, tablets, adminPhones, adminTablets } =
+  phoneSlices.actions

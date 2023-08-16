@@ -10,9 +10,14 @@ const tvSlices = createSlice({
   reducers: {
     tvs: (state, action) => {
       state.tvs -= action.payload
+    },
+    addTvs: {
+      reducer: (state, action) => {
+        state.tvs += action.payload
+      }
     }
   }
 })
 
 export default tvSlices.reducer
-export const { tvs } = tvSlices.actions
+export const { tvs, addTvs } = tvSlices.actions
