@@ -8,12 +8,15 @@ const initialState = {
   error: ''
 }
 
-createAsyncThunk('/comments/fetchComments', async () => {
-  return axios
-    .get('https://jsonplaceholder.typicode.com/comments')
+export const fetchComments = createAsyncThunk(
+  '/comments/fetchComments',
+  async () => {
+    return axios
+      .get('https://jsonplaceholder.typicode.com/comments')
 
-    .then((res) => res.data)
-})
+      .then((res) => res.data)
+  }
+)
 
 const commentSlice = createSlice({
   name: 'comments',
@@ -39,6 +42,7 @@ export default commentSlice.reducer
 
 // BACKDOOR (after the .get() method):
 // RequestsStatus : 'Pending, 'Fulfilled', 'Rejected'
+
 // Pending:
 // Version 1:
 // Action {
@@ -50,12 +54,14 @@ export default commentSlice.reducer
 //   type: comments/fetchComments/pending,
 //   meta:{requestId: 'abc123', requestStatus:'pending'}
 // }
+
 // Fulfilled:
 // Action {
 //   type: fetchComments.fulfilled,
 //   payload: [],
 //   meta:{requestId: 'abc123', requestStatus:'fulfilled'}
 // }
+
 // Rejected:
 // Action {
 //   type: fetchComments.rejected,
